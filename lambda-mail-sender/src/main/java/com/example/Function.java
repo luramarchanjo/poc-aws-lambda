@@ -16,6 +16,7 @@ import com.amazonaws.services.simpleemail.model.SendEmailResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 import lombok.NonNull;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -28,9 +29,23 @@ public class Function implements RequestHandler<SQSEvent, String> {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
+  private final boolean simulateError = Boolean.parseBoolean(System.getenv("SIMULATE_ERROR"));
+
+  private final boolean simulateRandomError = Boolean
+      .parseBoolean(System.getenv("SIMULATE_RANDOM_ERROR"));
+
   @Override
   public String handleRequest(SQSEvent sqsEvent, Context context) {
     val logger = context.getLogger();
+    if (simulateError) {
+      logger.log("Simulate error flag is enabled...simulating error");
+      throw new RuntimeException("Random error " + context.getAwsRequestId());
+    }
+
+    if (simulateRandomError && generateRandomNumber(1, 10) > 5) {
+      logger.log("Simulate error flag is enabled...simulating error");
+      throw new RuntimeException("Random error " + context.getAwsRequestId());
+    }
 
     Optional.of(sqsEvent.getRecords())
         .orElse(new ArrayList<>())
@@ -64,6 +79,11 @@ public class Function implements RequestHandler<SQSEvent, String> {
 
     SendEmailResult response = sesService.sendEmail(request);
     logger.log(String.format("Processed %s %s", sqsMessage, response));
+  }
+
+  private int generateRandomNumber(@NonNull int min, @NonNull int max) {
+    val random = new Random();
+    return random.nextInt(max - min + 1) + min;
   }
 
 }
