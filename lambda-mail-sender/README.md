@@ -22,7 +22,32 @@ If you are using Simple Email Service (SES) SANDBOX both *EMAILS* must be valida
 
 # Testing on Amazon Web Services (AWS)
 
-# [EmailEvent](https://github.com/larchanjo/poc-aws-lambda/blob/master/lambda-mail-sender/src/main/java/com/example/EmailEvent.java)
+## Setup
+
+#### [AWS Simple Email Service (SES)](https://aws.amazon.com/ses/)
+
+Verify some personal email addresses
+
+#### [AWS Simple Queue Service (SQS)](https://aws.amazon.com/sqs/)
+
+First, create a dead letter queue named `mail-ddl.fifo`
+
+Second, create fifo queue called `mail.fifo`
+
+#### [AWS Lambda](https://aws.amazon.com/lambda/)
+
+First, create a lambda called `lambda-mail-sender`
+
+Second, attach these policies `AWSLambdaSQSQueueExecutionRole` and `AmazonSNSFullAccess` to the 
+lambda role
+
+Third, add SQS trigger to the lambda
+
+## Testing
+
+Go to the SQS and send a message with this payload:
+
+#### [EmailEvent](https://github.com/larchanjo/poc-aws-lambda/blob/master/lambda-mail-sender/src/main/java/com/example/EmailEvent.java)
 
 ```
 {
