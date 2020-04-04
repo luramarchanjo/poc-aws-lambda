@@ -22,4 +22,16 @@ If you are using Simple Email Service (SES) SANDBOX both *EMAILS* must be valida
 
 # Testing on Amazon Web Services (AWS)
 
+# EmailEvent
+
+```
+{
+"to" : "string",
+"from" : "string",
+"subject" : "string",
+"body" : "string",
+"htmlBody" : true
+}
+```
+
 # Be Happy
