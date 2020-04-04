@@ -8,6 +8,6 @@ This is a poc using [AWS Lambda](https://aws.amazon.com/lambda/)
 
 # Applications catalog
 
-* lambda-mail-sender
+* [lambda-mail-sender](https://github.com/larchanjo/poc-aws-lambda/tree/master/lambda-mail-sender)
 
 # Be Happy
