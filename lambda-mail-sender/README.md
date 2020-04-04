@@ -22,7 +22,7 @@ If you are using Simple Email Service (SES) SANDBOX both *EMAILS* must be valida
 
 # Testing on Amazon Web Services (AWS)
 
-# EmailEvent
+# [EmailEvent](https://github.com/larchanjo/poc-aws-lambda/blob/master/lambda-mail-sender/src/main/java/com/example/EmailEvent.java)
 
 ```
 {
