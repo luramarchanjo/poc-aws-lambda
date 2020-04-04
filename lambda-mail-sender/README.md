@@ -26,11 +26,11 @@ If you are using Simple Email Service (SES) SANDBOX both *EMAILS* must be valida
 
 ```
 {
-"to" : "string",
-"from" : "string",
-"subject" : "string",
-"body" : "string",
-"htmlBody" : true
+    "to" : "string",
+    "from" : "string",
+    "subject" : "string",
+    "body" : "string",
+    "htmlBody" : true
 }
 ```
 
