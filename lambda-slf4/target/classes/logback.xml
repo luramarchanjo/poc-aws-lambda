@@ -1,0 +1,13 @@
+<configuration>
+
+  <appender name="awslambda" class="org.jlib.cloud.aws.lambda.logback.AwsLambdaAppender">
+    <encoder type="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>[%thread][%highlight(%-5level)][%cyan(%d{yyyy-MM-dd HH:mm:ss})][%yellow(%X{eventId:-eventId-not-set})][%magenta(%logger{40})] - %message%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="awslambda" />
+  </root>
+
+</configuration>
