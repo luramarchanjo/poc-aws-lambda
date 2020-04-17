@@ -15,6 +15,6 @@ This is a [lambda](https://aws.amazon.com/lambda/) that has the capability to re
 
 #### [lambda-keep-alive](https://github.com/larchanjo/poc-aws-lambda/tree/master/lambda-keep-alive)
 
-#### [lambda-sl4j](https://github.com/larchanjo/poc-aws-lambda/tree/master/lambda-sl4j)
+#### [lambda-sl4j](https://github.com/larchanjo/poc-aws-lambda/tree/master/lambda-logging)
 
 # Be Happy

@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>lambda-slf4</artifactId>
+  <artifactId>lambda-logging</artifactId>
   <version>1.0</version>
   <name>${artifactId}</name>
 
