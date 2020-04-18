@@ -15,7 +15,10 @@ public class Function implements SQSCorrelationRequestHandler<Event> {
 
   @Override
   public void process(Event event) {
-    logger.info("Processing {}", event);
+    logger.info("Received {}", event);
+    logger.info("Processed {}", event);
+    logger.info("Saved {}", event);
+    logger.info("--------------------------------------------------------------------------------");
   }
 
 }
