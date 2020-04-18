@@ -10,9 +10,9 @@ To test your function run the `Main.class`
 # Samples
 
 ```
-[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Received Event(id=c20098e1-acf1-4c8f-93bf-2397abe818bd, content=c9a70d58-0efb-46be-92ee-043e27e1aec0, correlationId=b0e0770d-c47e-494c-810c-051f4ad21116)
-[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Processed Event(id=c20098e1-acf1-4c8f-93bf-2397abe818bd, content=c9a70d58-0efb-46be-92ee-043e27e1aec0, correlationId=b0e0770d-c47e-494c-810c-051f4ad21116)
-[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Saved Event(id=c20098e1-acf1-4c8f-93bf-2397abe818bd, content=c9a70d58-0efb-46be-92ee-043e27e1aec0, correlationId=b0e0770d-c47e-494c-810c-051f4ad21116)
+[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Doing operation A
+[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Doing operation B
+[b0e0770d-c47e-494c-810c-051f4ad21116][com.example.domain.Function] - Doing operation C
 ```
 
 # Abstractions 
