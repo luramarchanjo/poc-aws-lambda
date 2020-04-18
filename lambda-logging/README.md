@@ -1,8 +1,7 @@
 # Overview
 
 This is a poc using [AWS Lambda Logging](https://aws.amazon.com/lambda/), 
-[Correlation Id](https://dzone.com/articles/correlation-id-for-logging-in-microservices) and  
-[Logack MDC](http://logback.qos.ch/manual/mdc.html) to improve your Observability!
+[Correlation Id](https://dzone.com/articles/correlation-id-for-logging-in-microservices) and [Logack MDC](http://logback.qos.ch/manual/mdc.html) to improve your Observability!
 
 # Testing
 
