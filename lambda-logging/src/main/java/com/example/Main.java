@@ -6,6 +6,7 @@ import com.amazonaws.services.lambda.runtime.events.SQSEvent.SQSMessage;
 import com.example.domain.Event;
 import com.example.domain.Function;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,6 @@ import java.util.UUID;
 import lombok.SneakyThrows;
 
 public class Main {
-
-  private static final ObjectMapper objectMapper = new ObjectMapper();
 
   @SneakyThrows
   public static void main(String[] args) {

@@ -50,7 +50,7 @@ public class Function implements RequestHandler<SQSEvent, String> {
       throw new RuntimeException("Random error " + context.getAwsRequestId());
     }
 
-    Optional.of(sqsEvent.getRecords())
+    Optional.ofNullable(sqsEvent.getRecords())
         .orElse(new ArrayList<>())
         .forEach(message -> processMessage(message, logger));
 
