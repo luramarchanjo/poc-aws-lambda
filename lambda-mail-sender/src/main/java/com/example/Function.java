@@ -13,8 +13,6 @@ import com.amazonaws.services.simpleemail.model.Destination;
 import com.amazonaws.services.simpleemail.model.Message;
 import com.amazonaws.services.simpleemail.model.SendEmailRequest;
 import com.amazonaws.services.simpleemail.model.SendEmailResult;
-import com.amazonaws.xray.AWSXRay;
-import com.amazonaws.xray.handlers.TracingHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -27,7 +25,6 @@ public class Function implements RequestHandler<SQSEvent, String> {
 
   private final AmazonSimpleEmailService sesService = AmazonSimpleEmailServiceClientBuilder
       .standard()
-      .withRequestHandlers(new TracingHandler(AWSXRay.getGlobalRecorder()))
       .build();
 
   private final ObjectMapper objectMapper = new ObjectMapper();
@@ -37,6 +34,7 @@ public class Function implements RequestHandler<SQSEvent, String> {
   private final boolean simulateRandomError = Boolean
       .parseBoolean(System.getenv("SIMULATE_RANDOM_ERROR"));
 
+  @SneakyThrows
   @Override
   public String handleRequest(SQSEvent sqsEvent, Context context) {
     val logger = context.getLogger();
@@ -54,7 +52,7 @@ public class Function implements RequestHandler<SQSEvent, String> {
         .orElse(new ArrayList<>())
         .forEach(message -> processMessage(message, logger));
 
-    return context.getAwsRequestId();
+    return objectMapper.writeValueAsString(sqsEvent);
   }
 
   @SneakyThrows
