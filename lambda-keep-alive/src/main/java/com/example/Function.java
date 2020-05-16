@@ -14,13 +14,17 @@ import org.apache.commons.configuration2.EnvironmentConfiguration;
 
 public class Function implements RequestHandler<ScheduledEvent, String> {
 
-  private final EnvironmentConfiguration environment = new EnvironmentConfiguration();
-
   private final ObjectMapper objectMapper = new ObjectMapper();
 
+  private final EnvironmentConfiguration environment = new EnvironmentConfiguration();
+
+  private final long connectTimeout = environment.getLong("CONNECT_TIMEOUT", 1);
+
+  private final long readTimeout = environment.getLong("READ_TIMEOUT", 1);
+
   private final OkHttpClient client = new OkHttpClient.Builder()
-      .connectTimeout(1, TimeUnit.SECONDS)
-      .readTimeout(1, TimeUnit.SECONDS)
+      .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+      .readTimeout(readTimeout, TimeUnit.SECONDS)
       .build();
 
   @SneakyThrows
