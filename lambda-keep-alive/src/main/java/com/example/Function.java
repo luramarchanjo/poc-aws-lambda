@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.ScheduledEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.concurrent.TimeUnit;
 import lombok.SneakyThrows;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -17,12 +18,16 @@ public class Function implements RequestHandler<ScheduledEvent, String> {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
-  private final OkHttpClient client = new OkHttpClient.Builder().build();
+  private final OkHttpClient client = new OkHttpClient.Builder()
+      .connectTimeout(1, TimeUnit.SECONDS)
+      .readTimeout(1, TimeUnit.SECONDS)
+      .build();
 
   @SneakyThrows
   @Override
   public String handleRequest(ScheduledEvent event, Context context) {
-    String endpoints = environment.get(String.class, "ENDPOINTS");
+    String defaultEndpoints = "{\"endpoints\" : [ \"http://google.com\" ] }";
+    String endpoints = environment.get(String.class, "ENDPOINTS", defaultEndpoints);
     EndpointList endpointList = objectMapper.readValue(endpoints, EndpointList.class);
     endpointList.getEndpoints().forEach(this::sendRequest);
 
@@ -36,7 +41,7 @@ public class Function implements RequestHandler<ScheduledEvent, String> {
       Response response = call.execute();
       System.out.println("Sent request to " + endpoint + ", " + response);
     } catch (Exception e) {
-      System.out.println("Fail to send request to "+ endpoint);
+      System.out.println("Fail to send request to "+ endpoint + " " + e);
     }
   }
 
